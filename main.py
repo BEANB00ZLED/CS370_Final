@@ -22,8 +22,8 @@ def main():
     def buttonTest():
         print("PRESSEED!!!!!!!!")
 
-    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=buttonTest, color="white", font_size=30)
-    # *********
+    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=buttonTest, color="white", hover_color="grey", click_color="red", font_size=30)
+    # ********
     # Game loop
     # *********
     while running:

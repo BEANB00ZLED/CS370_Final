@@ -6,12 +6,17 @@ import pygame
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 class Button:
+
+    button_color = (0, 0, 0)
     #Constructor function that sets size, color, function, text, and font size of the button
-    def __init__(self, x, y, width, height, text, click_function, color, font_size=30):
+    def __init__(self, x, y, width, height, text, click_function, color, hover_color, click_color, font_size=30):
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
         self.click_function = click_function
         self.color = color
+        self.button_color = color
+        self.click_color = click_color
+        self.hover_color = hover_color
         self.font = pygame.font.Font(None, font_size)
 
     #process function that takes in the screen from main, draws the button, and checks for a click
@@ -23,6 +28,14 @@ class Button:
         screen.blit(text_surface, text_rect)
 
         for event in event_list:
+            #checks if the button is being hovered and changes the color
+            if self.rect.collidepoint(pygame.mouse.get_pos()):
+                self.color = self.hover_color
+            else:
+                self.color = self.button_color
+            #checks if button is clicked and runs the custom function if it is
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
+                self.color = self.click_color
                 self.click_function()
+
 
