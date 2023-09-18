@@ -19,9 +19,11 @@ def main():
     
     while running:
     
+        #Gets the events that are done
+        event_list = pygame.event.get()
         #Check for event if user has made any sort of input
         for event in pygame.event.get():
-            #Closes window if X is pressed
+            #Closes winow if X is pressed
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
