@@ -1,56 +1,53 @@
 import pygame
 import button
 
+
 def main():
-    #Initialize pygame module
+    # Initialize pygame module
     pygame.init()
-    
-    #Set window size
+
+    # Set window size
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE, pygame.FULLSCREEN)
-    
-    #Set window name
+
+    # Set window name
     pygame.display.set_caption('Carcassonne')
-    
-    #For if game is running
+
+    # For if game is running
     running = True
 
-
-    #*********
-    #Button Creation and testing
-    #*********
+    # *********
+    # Button Creation and testing
+    # *********
 
     def buttonTest():
-        print("PRESSEED!!!!!!!!JJJJ")
+        print("PRESSEED!!!!!!!!")
 
     buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=buttonTest, color="white", font_size=30)
-    #*********
-    #Game loop
-    #*********
+    # *********
+    # Game loop
+    # *********
     while running:
 
-    
-        #Gets the events that are done
+        # Gets the events that are done
         event_list = pygame.event.get()
-        #Check for event if user has made any sort of input
+        # Check for event if user has made any sort of input
         for event in event_list:
-            #Closes winow if X is pressed
+            # Closes window if X is pressed
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                #Closes window if esc key pressed
+                # Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                
-        #Set window color
+
+        # Set window color
         screen.fill("black")
 
+        buttonTest.process(screen, event_list)
 
-        buttonTest.process(screen)
-
-        #Update the display
+        # Update the display
         pygame.display.flip()
 
 
-        
 if __name__ == "__main__":
     main()

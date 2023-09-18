@@ -15,13 +15,14 @@ class Button:
         self.font = pygame.font.Font(None, font_size)
 
     #process function that takes in the screen from main, draws the button, and checks for a click
-    def process(self, screen):
+    def process(self, screen, event_list):
         pygame.draw.rect(screen, self.color, self.rect)
         text_surface = self.font.render(self.text, True, BLACK)
         text_rect = text_surface.get_rect()
         text_rect.center = self.rect.center
         screen.blit(text_surface, text_rect)
 
-        if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
-            self.click_function()
+        for event in event_list:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
+                self.click_function()
 
