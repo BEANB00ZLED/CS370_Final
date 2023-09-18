@@ -3,7 +3,7 @@
 import pygame
 
 class Tile():
-    #Static variable
+    #Static variable, keeps track of whether any tile is being moved or not
     cursor_occupied = False
     
     def __init__(self, x, y, image_path):
@@ -35,14 +35,12 @@ class Tile():
                 elif event.key == pygame.K_q and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.image = pygame.transform.rotate(self.image, 90)
                     
-            #Looking for mouse movement    
+            #Handles the movement part if the mouse button is down and no other tiles is being moved   
             if event.type == pygame.MOUSEMOTION and self.is_picked_up and self.rect.collidepoint(pygame.mouse.get_pos()):
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
-                
-                    
-                    
+                   
         #Attatch tile to screen
         screen.blit(self.image, (self.x, self.y))
         
