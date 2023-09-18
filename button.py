@@ -9,6 +9,7 @@ class Button:
 
     button_color = (0, 0, 0)
     #Constructor function that sets size, color, function, text, and font size of the button
+    #if you don't want a hover color or click color, then set them the same as color.
     def __init__(self, x, y, width, height, text, click_function, color, hover_color, click_color, font_size=30):
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
@@ -34,6 +35,7 @@ class Button:
             else:
                 self.color = self.button_color
             #checks if button is clicked and runs the custom function if it is
+            #also adds a click color if one is chosen
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
                 self.color = self.click_color
                 self.click_function()
