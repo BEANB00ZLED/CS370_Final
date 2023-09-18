@@ -1,4 +1,5 @@
 import pygame
+import button
 
 def main():
     #Initialize pygame module
@@ -12,12 +13,21 @@ def main():
     
     #For if game is running
     running = True
-    
+
+
+    #*********
+    #Button Creation and testing
+    #*********
+
+    def buttonTest():
+        print("PRESSEED!!!!!!!!JJJJ")
+
+    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=buttonTest, color="white", font_size=30)
     #*********
     #Game loop
     #*********
-    
     while running:
+
     
         #Check for event if user has made any sort of input
         for event in pygame.event.get():
@@ -31,10 +41,14 @@ def main():
                 
         #Set window color
         screen.fill("black")
-        
+
+
+        buttonTest.process(screen)
+
         #Update the display
         pygame.display.flip()
-        
+
+
         
 if __name__ == "__main__":
     main()
