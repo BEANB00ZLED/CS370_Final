@@ -1,4 +1,6 @@
 import pygame
+import tile
+from tile import Tile
 
 def main():
     #Initialize pygame module
@@ -13,16 +15,21 @@ def main():
     #For if game is running
     running = True
     
+    #TEST
+    test_tile = Tile(500, 500, 'TileAssets\Tile1_4.png')
+    
     #*********
     #Game loop
     #*********
     
     while running:
     
+        event_list = pygame.event.get()
+    
         #Gets the events that are done
         event_list = pygame.event.get()
         #Check for event if user has made any sort of input
-        for event in pygame.event.get():
+        for event in event_list:
             #Closes winow if X is pressed
             if event.type == pygame.QUIT:
                 running = False
@@ -33,6 +40,8 @@ def main():
                 
         #Set window color
         screen.fill("black")
+        
+        test_tile.process(screen, event_list)
         
         #Update the display
         pygame.display.flip()
