@@ -28,6 +28,7 @@ def main():
         tile_list.append(drawnTile)
 
 
+
     buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=processTile, color="white",
                                hover_color="grey", click_color="red", font_size=30)
 
@@ -49,6 +50,9 @@ def main():
         #Set window color
         screen.fill("black")
 
+        for i in tile_list:
+            print("i", i)
+            i.process(screen, event_list)
 
 
         buttonTest.process(screen, event_list)
