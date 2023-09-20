@@ -51,7 +51,6 @@ def main():
         screen.fill("black")
 
         for i in tile_list:
-            print("i", i)
             i.process(screen, event_list)
 
 
