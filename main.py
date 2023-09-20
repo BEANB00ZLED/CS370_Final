@@ -1,4 +1,6 @@
 import pygame
+import button
+import tile
 
 def main():
     #Initialize pygame module
