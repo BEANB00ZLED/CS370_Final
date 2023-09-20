@@ -27,7 +27,6 @@ class Button:
         text_rect = text_surface.get_rect()
         text_rect.center = self.rect.center
         screen.blit(text_surface, text_rect)
-
         for event in event_list:
             #checks if the button is being hovered and changes the color
             if self.rect.collidepoint(pygame.mouse.get_pos()):

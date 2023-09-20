@@ -16,7 +16,7 @@ class Tile():
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         
     def process(self, screen, event_list):
-        for event in event_list:          
+        for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and self.rect.collidepoint(event.pos) and not Tile.cursor_occupied:
@@ -43,6 +43,7 @@ class Tile():
                    
         #Attatch tile to screen
         screen.blit(self.image, (self.x, self.y))
+
         
                     
 

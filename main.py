@@ -1,4 +1,8 @@
 import pygame
+from tile import Tile
+import button
+from deck import Deck
+
 
 def main():
     #Initialize pygame module
@@ -12,11 +16,21 @@ def main():
     
     #For if game is running
     running = True
-    
+
+    testDeck = Deck()
+    tile_list = []
     #*********
     #Game loop
     #*********
-    
+    def processTile():
+        drawnTile = testDeck.drawTile()
+        print("drawn tile 2", drawnTile)
+        tile_list.append(drawnTile)
+
+
+    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=processTile, color="white",
+                               hover_color="grey", click_color="red", font_size=30)
+
     while running:
     
         #Gets the events that are done
@@ -30,13 +44,18 @@ def main():
                 #Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                
+
+
         #Set window color
         screen.fill("black")
-        
+
+
+
+        buttonTest.process(screen, event_list)
+
         #Update the display
         pygame.display.flip()
-        
+
         
 if __name__ == "__main__":
     main()
