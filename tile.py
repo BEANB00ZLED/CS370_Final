@@ -36,7 +36,7 @@ class Tile():
                     self.image = pygame.transform.rotate(self.image, 90)
                     
             #Handles the movement part if the mouse button is down and no other tiles is being moved   
-            if event.type == pygame.MOUSEMOTION and self.is_picked_up and self.rect.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEMOTION and self.is_picked_up:
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
