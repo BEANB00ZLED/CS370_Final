@@ -26,9 +26,12 @@ class Deck:
 
     #pops the tile on the bottom of the array out, shifting everything over, and returns it.
     def drawTile(self):
-        drawnTile = self.game_deck.pop(0)
-        print("drawn tile", drawnTile)
-        return drawnTile
+        if len(self.game_deck) > 0:
+            drawnTile = self.game_deck.pop(0)
+            print("drawn tile", drawnTile)
+            return drawnTile
+        else:
+            return None
 
 
 
