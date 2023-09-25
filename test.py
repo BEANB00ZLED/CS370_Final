@@ -5,6 +5,25 @@ from button import Button
 from deck import Deck
 from tile import Tile
 
+
+class TestTile(unittest.TestCase):
+    pygame.init()
+    test_x = 50
+    test_y = 50
+    test_image_path = 'TileAssets/Tile1_4.png'
+    test_tile = Tile(x=test_x, y=test_y, image_path=test_image_path)
+
+    def test_rect(self):
+        self.assertIsInstance(TestTile.test_tile.rect, pygame.Rect,"Button.rect is not using pygame's built in class")
+        self.assertEqual(TestTile.test_tile.rect.x, TestTile.test_x, "Button.rect.x does not match passed value")
+
+    def test_image(self):
+        self.assertEqual(TestTile.test_tile.rect.y, TestTile.test_y, "Button.rect.y does not match passed value")
+
+    def test_image(self):
+        self.assertEqual(TestTile.test_tile.image_path, TestTile.test_image_path, "Tile image path does not match")
+
+
 class TestButton(unittest.TestCase):
     pygame.init()
     
