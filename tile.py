@@ -10,6 +10,7 @@ class Tile():
         self.is_picked_up = False
         self.x = x
         self.y = y
+        self.image_path = image_path
         self.image = pygame.image.load(image_path)
         self.width = self.image.get_width()
         self.height = self.image.get_height()
