@@ -18,7 +18,7 @@ class Deck:
         self.game_deck = []
 
         for i in (os.listdir('TileAssets')):
-            i = "TileAssets\\{}".format(i)
+            i = "TileAssets/{}".format(i)
             for j in range(int(i[-5])):
                 self.game_deck.append(Tile(500,500, i))
         

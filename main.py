@@ -14,7 +14,7 @@ def main():
     #Set window name
     pygame.display.set_caption('Carcassonne')
     #Set window icon
-    pygame.display.set_icon(pygame.image.load('MiscAssets\CarcasonneLogoTransparentBackground.png'))
+    pygame.display.set_icon(pygame.image.load('MiscAssets/CarcasonneLogoTransparentBackground.png'))
     
     #For if game is running
     running = True
@@ -31,7 +31,7 @@ def main():
                                hover_color="grey", click_color="red", font_size=30)
     
     #Creating the tile that starts in play
-    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets\Tile8_4.png")
+    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4.png")
     object_list.insert(0, starting_tile)
     
     #*********
