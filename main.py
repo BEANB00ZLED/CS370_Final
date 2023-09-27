@@ -13,6 +13,8 @@ def main():
     
     #Set window name
     pygame.display.set_caption('Carcassonne')
+    #Set window icon
+    pygame.display.set_icon(pygame.image.load('MiscAssets\CarcasonneLogoTransparentBackground.png'))
     
     #For if game is running
     running = True
