@@ -6,7 +6,7 @@ WHITE = (255, 255, 255)
 # Define the game piece class
 class Meeples:
     #initializes game peice attributes including position x,y
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, width, height, color):
         self.image = None
         self.rect = pygame.Rect(x, y, width, height)
         #self.rect.topleft = (x, y)
@@ -36,7 +36,7 @@ class Meeples:
                 if event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
                     color_key = int(event.unicode)
                     if color_key in self.color_image:
-                        self.load_image(self.color_images[color_key])
+                        self.load_image(self.color_image[color_key])
                         self.current_color = color_key
                     self.rect.topleft = pygame.mouse.get_pos()
         
