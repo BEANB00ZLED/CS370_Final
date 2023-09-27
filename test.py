@@ -59,6 +59,10 @@ class TestButton(unittest.TestCase):
     def test_click_function(self):
         self.assertTrue(TestButton.test_button.click_function)
         
+    def test_update_text(self):
+        TestButton.test_button.update_text(69)
+        self.assertEqual('Draw Tile (69)', TestButton.test_button.text)
+        
 class TestDeck(unittest.TestCase):
     pygame.init()
     
