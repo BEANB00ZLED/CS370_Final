@@ -256,10 +256,6 @@ class TestDeck(unittest.TestCase):
         
         self.assertTrue(True)
            
-
-class TestTile(unittest.TestCase):
-    pass
-
 class TestMeeple(unittest.TestCase):
     pass
 

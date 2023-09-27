@@ -18,20 +18,20 @@ def main():
     running = True
 
     testDeck = Deck()
-    tile_list = []
-    #*********
-    #Game loop
-    #*********
+    object_list = []
+    
     def processTile():
         drawnTile = testDeck.drawTile()
         print("drawn tile 2", drawnTile)
-        tile_list.append(drawnTile)
+        object_list.insert(0, drawnTile)
 
-
-
-    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=processTile, color="white",
+    #Create our button for drawing the deck
+    buttonTest = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "CLICK ME", click_function=processTile, color="white",
                                hover_color="grey", click_color="red", font_size=30)
-
+    
+    #*********
+    #Game loop
+    #*********
     while running:
     
         #Gets the events that are done
@@ -50,7 +50,7 @@ def main():
         #Set window color
         screen.fill("black")
 
-        for i in tile_list:
+        for i in object_list:
             i.process(screen, event_list)
 
 
