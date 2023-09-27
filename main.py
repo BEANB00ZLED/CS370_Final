@@ -27,7 +27,7 @@ def main():
         object_list.insert(0, drawnTile)
 
     #Create our button for drawing the deck
-    buttonTest = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
+    draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
                                hover_color="grey", click_color="red", font_size=30)
     
     #*********
@@ -47,7 +47,6 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     running = False
 
-
         #Set window color
         screen.fill("black")
 
@@ -55,12 +54,10 @@ def main():
             if i is not None:
                 i.process(screen, event_list)
 
-
-        buttonTest.process(screen, event_list)
+        draw_button.process(screen, event_list)
 
         #Update the display
         pygame.display.flip()
 
-        
 if __name__ == "__main__":
     main()
