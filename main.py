@@ -12,8 +12,7 @@ def main():
     #Set window name
     pygame.display.set_caption('Carcassonne')
     
-    meeple = Meeples(100, 100, 'meeple_character.png')
-
+    meeple = Meeples(100, 100, 'red')
 
     #For if game is running
     running = True
@@ -32,12 +31,12 @@ def main():
     #Game loop
     #*********
     while running:
-
-    
         #Gets the events that are done
         event_list = pygame.event.get()
+
         #Check for event if user has made any sort of input
-        for event in pygame.event.get():
+        #for event in pygame.event.get():
+        for event in event_list:
             #Closes winow if X is pressed
             if event.type == pygame.QUIT:
                 running = False
@@ -50,6 +49,8 @@ def main():
         screen.fill("black")
 
         meeple.process(screen, event_list)
+
+
 
         
         #Update the display
