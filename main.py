@@ -24,11 +24,10 @@ def main():
     
     def processTile():
         drawnTile = testDeck.drawTile()
-        print("drawn tile 2", drawnTile)
         object_list.insert(0, drawnTile)
 
     #Create our button for drawing the deck
-    buttonTest = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "CLICK ME", click_function=processTile, color="white",
+    buttonTest = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
                                hover_color="grey", click_color="red", font_size=30)
     
     #*********
@@ -53,7 +52,8 @@ def main():
         screen.fill("black")
 
         for i in object_list:
-            i.process(screen, event_list)
+            if i is not None:
+                i.process(screen, event_list)
 
 
         buttonTest.process(screen, event_list)
