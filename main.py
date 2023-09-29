@@ -15,6 +15,8 @@ def main():
     #meeple = Meeples(100, 100, 50, 50, 'red')
     meeple_list = [] #List to store  meeples
     current_color = None # Initialize current_color to None
+    dragging_meeple = None # Initialize a varibale to keep track of the meeple being dragged 
+    
     #For if game is running
     running = True
 
@@ -53,17 +55,32 @@ def main():
                 
         #Set window color
         screen.fill("black")
+
+        # Initialize a flag to check if a meeple was deleted during this frame
+        deleted_meeple = False
         
         for event in event_list:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and current_color is not None:
-                    new_meeple = Meeples(event.pos[0], event.pos[1], 50, 50, current_color)
-                    #new_meeple.place_meeple(current_color) # Set the color of the new meeple
-                    meeple_list.append(new_meeple)
-                elif event.button == 3:
+                    # Check if the mouse click is inside an existing meeple's rectangle
                     for meeple in meeple_list:
                         if meeple.rect.collidepoint(event.pos):
-                            meeple_list.remove(meeple)
+                            dragging_meeple = meeple
+                            break
+                    else:
+                        # If not inside an existing meeple, create a new one
+                        new_meeple = Meeples(event.pos[0], event.pos[1], 50, 50, current_color)
+                        meeple_list.append(new_meeple)
+                elif event.button == 3:
+                    #check if a  meeple was already delted in this fram
+                    if not deleted_meeple:
+                        for meeple in meeple_list.copy(): # Use a copy to avoid modifying the original list while iterating
+                            if meeple.rect.collidepoint(event.pos):
+                                meeple_list.remove(meeple)
+                                deleted_meeple = True # Set the flag to indicate a meeple was deleted
+                        if deleted_meeple:
+                            break   # Break out of the loop after deleting one meeple
+
     
 
         #Draw meeples here
@@ -72,6 +89,15 @@ def main():
 
         #Update the display
         pygame.display.flip()
+
+        # Check if we are dragging an existing meeple and update its position
+        if dragging_meeple is not None:
+            if pygame.mouse.get_pressed()[0]:  # Left mouse button is still pressed
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                dragging_meeple.rect.topleft = (mouse_x, mouse_y)
+            else:
+                dragging_meeple = None  # Stop dragging when left mouse button is released
+
 
 
         
