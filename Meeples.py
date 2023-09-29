@@ -10,31 +10,26 @@ class Meeples:
             3: 'meeple_character_orange.png',
             4: 'meeple_character_blue.png'
         }
-        self.current_color = None
+        #self.current_color = None
         self.rect = pygame.Rect(x, y, width, height)
         self.image = None
-        self.image_set = False
+        self.image_set = False # Declare it once, remove the duplicate
+        self.color = color_key #set the initial color when created
+        self.is_dragging = False # Initialize is_dragging
 
-    def load_image(self, meeple_character):
-        self.image = pygame.image.load(meeple_character)
-        self.image = pygame.transform.scale(self.image, (self.rect.width, self.rect.height))
-        self.image_set = True
+    def load_image(self):
+        if self.color in self.color_image:
+            image_path = self.color_image[self.color]
+            self.image = pygame.image.load(image_path)
+            self.image = pygame.transform.scale(self.image, (self.rect.width, self.rect.height))
+            self.image_set = True
 
-    def place_meeple(self, color_key):
-        if color_key in self.color_image:
-            self.current_color = color_key
-            self.load_image(self.color_image[color_key])
-    
-        self.is_dragging = False
-        self.offset_x = 0
-        self.offset_y = 0
 
     def process(self, screen, event_list, meeple_list):
+        self.load_image()  # Load the image with the correct color
+
         for event in event_list:
-            if event.type == pygame.KEYDOWN:
-                if event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
-                    self.place_meeple(event.key - pygame.K_1 + 1)
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 3 and self.image_set:
                     meeple_list.remove(self)
                     self.image = None
@@ -52,7 +47,8 @@ class Meeples:
             self.rect.x, self.rect.y = pygame.mouse.get_pos()
             self.rect.x -= self.offset_x
             self.rect.y -= self.offset_y
-        elif self.image_set:
+       
+        if self.image_set:
             screen.blit(self.image, self.rect.topleft)
 
 
