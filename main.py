@@ -13,6 +13,7 @@ def main():
     pygame.display.set_caption('Carcassonne')
     
     meeple = Meeples(100, 100, 50, 50, 'red')
+    meeple.meeple_list = []
     #For if game is running
     running = True
 
