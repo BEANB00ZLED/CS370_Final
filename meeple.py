@@ -3,17 +3,13 @@
 import pygame
 
 class Meeple:
-    def __init__(self, x, y, color) -> None:
+    def __init__(self, x, y, color):
         self.x = x
         self.y = y
         self.color = color
-        self.show = True
-        
-    def __del__(self):
-        pass
-        
+        self.show = True    
     
-    def process(self, screen, eventlist) -> None:
+    def process(self, screen, eventlist):
         circle = pygame.draw.circle(surface=screen, color=self.color, center=(self.x, self.y), radius=12.5)
         for event in eventlist:
             if event.type == pygame.MOUSEBUTTONDOWN:
