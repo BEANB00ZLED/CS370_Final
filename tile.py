@@ -30,10 +30,10 @@ class Tile():
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
                 #Rotates 90 degrees clockwise if e is pressed
-                if event.key == pygame.K_e and self.rect.collidepoint(pygame.mouse.get_pos()):
+                if event.key == pygame.K_e and self.rect.collidepoint(pygame.mouse.get_pos()) and self.is_picked_up:
                     self.image = pygame.transform.rotate(self.image, -90)
                 #Rotates 90 degrees counter clockwise if q is pressed
-                elif event.key == pygame.K_q and self.rect.collidepoint(pygame.mouse.get_pos()):
+                elif event.key == pygame.K_q and self.rect.collidepoint(pygame.mouse.get_pos()) and self.is_picked_up:
                     self.image = pygame.transform.rotate(self.image, 90)
                     
             #Handles the movement part if the mouse button is down and no other tiles is being moved   
