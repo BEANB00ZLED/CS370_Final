@@ -53,9 +53,9 @@ def main():
                 #Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                #Press 1 for red meeple
+                #Press 1 for purple meeple
                 elif event.key == pygame.K_1:  
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 0)))
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (128, 0, 128)))
                 #Press 2 for magenta meeple
                 elif event.key == pygame.K_2:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 255)))
