@@ -2,6 +2,8 @@ import pygame
 from tile import Tile
 import button
 from deck import Deck
+import meeple
+from meeple import Meeple
 
 
 def main():
@@ -20,11 +22,12 @@ def main():
     running = True
 
     testDeck = Deck()
-    object_list = []
+    tile_list = []
+    meeple_list = []
     
     def processTile():
         drawnTile = testDeck.drawTile()
-        object_list.insert(0, drawnTile)
+        tile_list.insert(0, drawnTile)
 
     #Create our button for drawing the deck
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
@@ -32,7 +35,7 @@ def main():
     
     #Creating the tile that starts in play
     starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4.png")
-    object_list.insert(0, starting_tile)
+    tile_list.insert(0, starting_tile)
     
     #*********
     #Game loop
@@ -50,14 +53,31 @@ def main():
                 #Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
-
+                #Press 1 for red meeple
+                elif event.key == pygame.K_1:  
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 0)))
+                #Press 2 for magenta meeple
+                elif event.key == pygame.K_2:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 255)))
+                #Press 3 for blue meeple
+                elif event.key == pygame.K_3:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (0, 0, 255)))
+                #Press 4 for orange meeple
+                elif event.key == pygame.K_4:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 140, 0)))
+                    
+                    
         #Set window color
         screen.fill("black")
 
-        for i in object_list:
+        for i in tile_list:
             if i is not None:
                 i.process(screen, event_list)
-
+        for i in meeple_list:
+            if i.show == True:
+                i.process(screen, event_list)
+            else:
+                meeple_list.remove(i)
         draw_button.process(screen, event_list)
 
         #Update the display
