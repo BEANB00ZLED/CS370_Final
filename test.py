@@ -4,7 +4,19 @@ import numpy as np
 from button import Button
 from deck import Deck
 from tile import Tile
+from meeple import Meeple
 
+class TestMeeple(unittest.TestCase):
+    pygame.init()
+    test_x = 50
+    test_y = 50
+    test_color = 'red'
+    test_meeple = Meeple(test_x, test_y, test_color)
+
+    def test_constructor(self):
+        self.assertEqual(TestMeeple.test_meeple.x, TestMeeple.test_x, 'Meeple x does not match passed value')
+        self.assertEqual(TestMeeple.test_meeple.y, TestMeeple.test_y, 'Meeple y does not match passed value')
+        self.assertEqual(TestMeeple.test_meeple.color, TestMeeple.test_color, 'Meeple color does not match passed value')
 
 class TestTile(unittest.TestCase):
     pygame.init()
