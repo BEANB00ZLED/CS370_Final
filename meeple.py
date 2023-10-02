@@ -9,9 +9,9 @@ class Meeple:
         self.color = color
         self.show = True    
     
-    def process(self, screen, eventlist):
+    def process(self, screen, event_list):
         circle = pygame.draw.circle(surface=screen, color=self.color, center=(self.x, self.y), radius=12.5)
-        for event in eventlist:
+        for event in event_list:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pass
                 #For right click

@@ -21,13 +21,13 @@ def main():
     #For if game is running
     running = True
 
-    testDeck = Deck()
+    game_deck = Deck()
     tile_list = []
     meeple_list = []
     
     def processTile():
-        drawnTile = testDeck.drawTile()
-        tile_list.insert(0, drawnTile)
+        drawn_tile = game_deck.drawTile()
+        tile_list.insert(0, drawn_tile)
 
     #Create our button for drawing the deck
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
@@ -74,7 +74,7 @@ def main():
             if i is not None:
                 i.process(screen, event_list)
         for i in meeple_list:
-            if i.show == True:
+            if i.show:
                 i.process(screen, event_list)
             else:
                 meeple_list.remove(i)

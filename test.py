@@ -271,10 +271,6 @@ class TestDeck(unittest.TestCase):
             self.assertTrue(False, "Crashed due to drawing tile from empty deck")
         
         self.assertTrue(True)
-           
-class TestMeeple(unittest.TestCase):
-    pass
-
 
 if __name__ == '__main__':
     unittest.main()

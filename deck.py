@@ -32,8 +32,8 @@ class Deck:
     def drawTile(self):
         if len(self.game_deck) > 0:
             Deck.tiles_left -= 1
-            drawnTile = self.game_deck.pop(0)
-            return drawnTile
+            drawn_tile = self.game_deck.pop(0)
+            return drawn_tile
         else:
             return None
 
