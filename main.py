@@ -2,7 +2,7 @@ import pygame
 from tile import Tile
 import button
 from deck import Deck
-import meeple
+from grid import Grid
 from meeple import Meeple
 
 
@@ -11,7 +11,7 @@ def main():
     pygame.init()
     
     #Set window size
-    screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE, pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     
     #Set window name
     pygame.display.set_caption('Carcassonne')
@@ -24,7 +24,7 @@ def main():
     game_deck = Deck()
     tile_list = []
     meeple_list = []
-    
+    grid = Grid()
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
@@ -69,7 +69,7 @@ def main():
                     
         #Set window color
         screen.fill("black")
-
+        grid.drawGrid(1050, 10, surface=screen)
         for i in tile_list:
             if i is not None:
                 i.process(screen, event_list)

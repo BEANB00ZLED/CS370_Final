@@ -1,10 +1,13 @@
 #tile.py
 
 import pygame
+from grid import Grid
+
 
 class Tile():
     #Static variable, keeps track of whether any tile is being moved or not
     cursor_occupied = False
+
     
     def __init__(self, x, y, image_path):
         self.is_picked_up = False
@@ -17,6 +20,9 @@ class Tile():
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         
     def process(self, screen, event_list):
+        grid = Grid()
+        grid_square_size = grid.sizeBetween(1050, 10)
+
         for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -26,6 +32,13 @@ class Tile():
             #Looking for releasing left click
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
+                    self.x = ((round(self.x / grid_square_size)) * grid_square_size)
+                    self.y = ((round(self.y / grid_square_size)) * grid_square_size)
+                    self.is_picked_up = False
+                    Tile.cursor_occupied = False
+                else:
+                    self.x = 0
+                    self.y = 0
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
