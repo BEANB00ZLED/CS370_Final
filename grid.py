@@ -4,8 +4,8 @@ import pygame
 class Grid:
 
     # uselss constructor
-    def __int__(self):
-        pass
+    def __init__(self):
+        self.occupied_square = set()
 
     # draws the grid
     def drawGrid(self, w, rows, surface):
@@ -20,3 +20,9 @@ class Grid:
     def sizeBetween(self, w, rows):
         size_between = w // rows
         return size_between
+
+    def computeSnap(self, x, y):
+        grid_square_size = self.sizeBetween(1050, 10)
+        x = ((round(x / grid_square_size)) * grid_square_size)
+        y = ((round(y / grid_square_size)) * grid_square_size)
+        return x, y

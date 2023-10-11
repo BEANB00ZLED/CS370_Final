@@ -32,13 +32,7 @@ class Tile():
             #Looking for releasing left click
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
-                    self.x = ((round(self.x / grid_square_size)) * grid_square_size)
-                    self.y = ((round(self.y / grid_square_size)) * grid_square_size)
-                    self.is_picked_up = False
-                    Tile.cursor_occupied = False
-                else:
-                    self.x = 0
-                    self.y = 0
+                    self.x, self.y = grid.computeSnap(self.x, self.y)
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
