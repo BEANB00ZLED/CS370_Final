@@ -34,9 +34,8 @@ def main():
                                hover_color="grey", click_color="red", font_size=30)
     
     #Creating the tile that starts in play
-    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4.png")
+    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4")
     tile_list.insert(0, starting_tile)
-    
     #*********
     #Game loop
     #*********
