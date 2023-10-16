@@ -11,10 +11,11 @@ class Tile():
         self.is_picked_up = False
         self.x = x
         self.y = y
+        self.tile_folder = tile_folder
         self.frames = []
         self.current_frame = 0
-        for i in os.listdir(tile_folder):
-            file = tile_folder + "/" + i
+        for i in os.listdir(self.tile_folder):
+            file = self.tile_folder + "/" + i
             self.frames.append(pygame.image.load(file))
         self.width = self.frames[self.current_frame].get_width()
         self.height = self.frames[self.current_frame].get_height()
