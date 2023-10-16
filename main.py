@@ -5,7 +5,7 @@ from Meeples import Meeples
 from deck import Deck
 import meeple
 from meeple import Meeple
-
+import pygame
 
 def main():
     #Initialize pygame module
@@ -25,10 +25,13 @@ def main():
     game_deck = Deck()
     tile_list = []
     meeple_list = []
+
+    click_sound = pygame.mixer.Sound('magic-spell-6006.mp3')
     
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
+        click_sound.play()
 
     #Create our button for drawing the deck
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
