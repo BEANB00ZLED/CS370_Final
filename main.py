@@ -25,12 +25,13 @@ def main():
     game_deck = Deck()
     tile_list = []
     meeple_list = []
-
+    #loads in the sound 
     click_sound = pygame.mixer.Sound('magic-spell-6006.mp3')
     
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
+        #play the sound when the tile is drawn
         click_sound.play()
 
     #Create our button for drawing the deck
