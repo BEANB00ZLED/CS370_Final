@@ -1,6 +1,6 @@
 import pygame
 
-WHITE = (255, 255, 255)
+#WHITE = (255, 255, 255)
 
 class Meeples:
     def __init__(self, x, y, width, height, color_key):

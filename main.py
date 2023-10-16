@@ -65,22 +65,28 @@ def main():
                     # Check if the mouse click is inside an existing meeple's rectangle
                     for meeple in meeple_list:
                         if meeple.rect.collidepoint(event.pos):
+                            print("Left-clicked on an existing meeple")
                             dragging_meeple = meeple
                             break
                     else:
+                        print("Left-clicked to create a new meeple")
                         # If not inside an existing meeple, create a new one
                         new_meeple = Meeples(event.pos[0], event.pos[1], 50, 50, current_color)
                         meeple_list.append(new_meeple)
                 elif event.button == 3:
+                    print("Right-clicked")
+                    #print("Meeple count before deletion:", len(meeple_list))
                     #check if a  meeple was already delted in this fram
-                    if not deleted_meeple:
-                        for meeple in meeple_list.copy(): # Use a copy to avoid modifying the original list while iterating
-                            if meeple.rect.collidepoint(event.pos):
-                                meeple_list.remove(meeple)
-                                deleted_meeple = True # Set the flag to indicate a meeple was deleted
-                        if deleted_meeple:
+                    #if not deleted_meeple:
+                    #deleted_meeple = False
+                    for meeple in meeple_list: # Use a copy to avoid modifying the original list while iterating
+                        if meeple.rect.collidepoint(event.pos):
+                            meeple_list.remove(meeple)
+                            meeple.image = None
+                            meeple.image_set = False
+                            print("deleted one meeple") # Set the flag to indicate a meeple was deleted
                             break   # Break out of the loop after deleting one meeple
-
+                    #print("Meeple count after deletion:", len(meeple_list))
     
 
         #Draw meeples here
