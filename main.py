@@ -26,13 +26,16 @@ def main():
     tile_list = []
     meeple_list = []
     #loads in the sound 
-    click_sound = pygame.mixer.Sound('magic-spell-6006.mp3')
+    click1_sound = pygame.mixer.Sound('card-sounds-35956.mp3')
+    meeple1_sound = pygame.mixer.Sound('horn-89801.mp3')
+    meeple2_sound = pygame.mixer.Sound('magic-spell-6005.wav')
+    
     
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
         #play the sound when the tile is drawn
-        click_sound.play()
+        click1_sound.play()
 
     #Create our button for drawing the deck
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
@@ -60,17 +63,21 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 #Press 1 for purple meeple
-                elif event.key == pygame.K_1:  
+                elif event.key == pygame.K_1:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (128, 0, 128)))
+                    meeple1_sound.play()
                 #Press 2 for magenta meeple
                 elif event.key == pygame.K_2:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 255)))
+                    meeple1_sound.play()
                 #Press 3 for blue meeple
                 elif event.key == pygame.K_3:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (0, 0, 255)))
+                    meeple1_sound.play()
                 #Press 4 for orange meeple
                 elif event.key == pygame.K_4:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 140, 0)))
+                    meeple1_sound.play()
                     
                     
         #Set window color
