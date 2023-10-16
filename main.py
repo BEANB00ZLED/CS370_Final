@@ -1,6 +1,11 @@
 import pygame
+from tile import Tile
 import button
 from Meeples import Meeples
+from deck import Deck
+import meeple
+from meeple import Meeple
+
 
 def main():
     #Initialize pygame module
@@ -11,36 +16,37 @@ def main():
     
     #Set window name
     pygame.display.set_caption('Carcassonne')
-    
-    #meeple = Meeples(100, 100, 50, 50, 'red')
-    meeple_list = [] #List to store  meeples
-    current_color = None # Initialize current_color to None
-    dragging_meeple = None # Initialize a varibale to keep track of the meeple being dragged 
+    #Set window icon
+    pygame.display.set_icon(pygame.image.load('MiscAssets/CarcasonneLogoTransparentBackground.png'))
     
     #For if game is running
     running = True
 
-
-
-    #*********
-    #Button Creation and testing
-    #*********
-
-    def buttonTest():
-        print("PRESSEED!!!!!!!!JJJJ")
-
-    buttonTest = button.Button(100, 100, 100, 100, "CLICK ME", click_function=buttonTest, color="white", font_size=30)
+    game_deck = Deck()
+    tile_list = []
+    meeple_list = []
     
+    def processTile():
+        drawn_tile = game_deck.drawTile()
+        tile_list.insert(0, drawn_tile)
+
+    #Create our button for drawing the deck
+    draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
+                               hover_color="grey", click_color="red", font_size=30)
+    
+    #Creating the tile that starts in play
+    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4.png")
+    tile_list.insert(0, starting_tile)
     
     #*********
     #Game loop
     #*********
     while running:
+    
         #Gets the events that are done
         event_list = pygame.event.get()
 
         #Check for event if user has made any sort of input
-        #for event in pygame.event.get():
         for event in event_list:
             #Closes winow if X is pressed
             if event.type == pygame.QUIT:
@@ -49,61 +55,35 @@ def main():
                 #Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                #added for meeple
-                elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4]:
-                    current_color = event.key - pygame.K_1 + 1
-                
+                #Press 1 for purple meeple
+                elif event.key == pygame.K_1:  
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (128, 0, 128)))
+                #Press 2 for magenta meeple
+                elif event.key == pygame.K_2:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 255)))
+                #Press 3 for blue meeple
+                elif event.key == pygame.K_3:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (0, 0, 255)))
+                #Press 4 for orange meeple
+                elif event.key == pygame.K_4:
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 140, 0)))
+                    
+                    
         #Set window color
         screen.fill("black")
 
-        # Initialize a flag to check if a meeple was deleted during this frame
-        deleted_meeple = False
-        
-        for event in event_list:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and current_color is not None:
-                    # Check if the mouse click is inside an existing meeple's rectangle
-                    for meeple in meeple_list:
-                        if meeple.rect.collidepoint(event.pos):
-                            print("Left-clicked on an existing meeple")
-                            dragging_meeple = meeple
-                            break
-                    else:
-                        print("Left-clicked to create a new meeple")
-                        # If not inside an existing meeple, create a new one
-                        new_meeple = Meeples(event.pos[0], event.pos[1], 50, 50, current_color)
-                        meeple_list.append(new_meeple)
-                elif event.button == 3:
-                    print("Right-clicked")
-                    #print("Meeple count before deletion:", len(meeple_list))
-                    #check if a  meeple was already delted in this fram
-                    #if not deleted_meeple:
-                    #deleted_meeple = False
-                    for meeple in meeple_list: # Use a copy to avoid modifying the original list while iterating
-                        if meeple.rect.collidepoint(event.pos):
-                            meeple_list.remove(meeple)
-                            meeple.image = None
-                            meeple.image_set = False
-                            print("deleted one meeple") # Set the flag to indicate a meeple was deleted
-                            break   # Break out of the loop after deleting one meeple
-                    #print("Meeple count after deletion:", len(meeple_list))
-    
-
-        #Draw meeples here
-        for meeple in meeple_list:
-            meeple.process(screen, event_list, meeple_list)
+        for i in tile_list:
+            if i is not None:
+                i.process(screen, event_list)
+        for i in meeple_list:
+            if i.show:
+                i.process(screen, event_list)
+            else:
+                meeple_list.remove(i)
+        draw_button.process(screen, event_list)
 
         #Update the display
         pygame.display.flip()
-
-        # Check if we are dragging an existing meeple and update its position
-        if dragging_meeple is not None:
-            if pygame.mouse.get_pressed()[0]:  # Left mouse button is still pressed
-                mouse_x, mouse_y = pygame.mouse.get_pos()
-                dragging_meeple.rect.topleft = (mouse_x, mouse_y)
-            else:
-                dragging_meeple = None  # Stop dragging when left mouse button is released
-
 
 
         
