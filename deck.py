@@ -27,7 +27,6 @@ class Deck:
 
         self.shuffle()
 
-
     #pops the tile on the bottom of the array out, shifting everything over, and returns it.
     def drawTile(self):
         if len(self.game_deck) > 0:

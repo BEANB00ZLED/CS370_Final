@@ -33,7 +33,7 @@ class Tile():
         elif self.current_frame < 0:
             self.current_frame = len(self.frames) -1
         
-    def process(self, screen, event_list):
+    def process_input(self, event_list):
         for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -58,7 +58,8 @@ class Tile():
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
-                   
+
+    def draw(self, screen):
         #Attatch tile to screen
         screen.blit(self.frames[self.current_frame], (self.x, self.y))
 

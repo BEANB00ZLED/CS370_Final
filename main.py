@@ -34,13 +34,12 @@ def main():
                                hover_color="grey", click_color="red", font_size=30)
     
     #Creating the tile that starts in play
-    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4")
+    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_3")
     tile_list.insert(0, starting_tile)
     #*********
-    #Game loop
+    #Main game loop
     #*********
     while running:
-    
         #Gets the events that are done
         event_list = pygame.event.get()
         #Check for event if user has made any sort of input
@@ -54,29 +53,34 @@ def main():
                     running = False
                 #Press 1 for purple meeple
                 elif event.key == pygame.K_1:  
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (128, 0, 128)))
-                #Press 2 for magenta meeple
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PurpleMeeple.png'))
+                #Press 2 for pink meeple
                 elif event.key == pygame.K_2:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 0, 255)))
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PinkMeeple.png'))
                 #Press 3 for blue meeple
                 elif event.key == pygame.K_3:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (0, 0, 255)))
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/BlueMeeple.png'))
                 #Press 4 for orange meeple
                 elif event.key == pygame.K_4:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], (255, 140, 0)))
-                    
-                    
+                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/OrangeMeeple.png'))
+                        
         #Set window color
         screen.fill("black")
 
+        #Tile handling
         for i in tile_list:
             if i is not None:
-                i.process(screen, event_list)
+                i.process_input(event_list)
+        for i in reversed(tile_list):
+            if i is not None:
+                i.draw(screen)
+        #Meeple handling
         for i in meeple_list:
             if i.show:
                 i.process(screen, event_list)
             else:
                 meeple_list.remove(i)
+        #Button handling
         draw_button.process(screen, event_list)
 
         #Update the display
