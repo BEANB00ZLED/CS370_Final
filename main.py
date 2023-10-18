@@ -34,13 +34,12 @@ def main():
                                hover_color="grey", click_color="red", font_size=30)
     
     #Creating the tile that starts in play
-    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_4")
+    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_3")
     tile_list.insert(0, starting_tile)
     #*********
-    #Game loop
+    #Main game loop
     #*********
     while running:
-    
         #Gets the events that are done
         event_list = pygame.event.get()
         #Check for event if user has made any sort of input
@@ -64,8 +63,7 @@ def main():
                 #Press 4 for orange meeple
                 elif event.key == pygame.K_4:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/OrangeMeeple.png'))
-                    
-                    
+                        
         #Set window color
         screen.fill("black")
 
