@@ -19,5 +19,4 @@ class Meeple:
                 #For right click within image detection
                 if event.button == 3 and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.show = False
-                    print("Meeple was clicked")
         

@@ -69,14 +69,20 @@ def main():
         #Set window color
         screen.fill("black")
 
+        #Tile handling
         for i in tile_list:
             if i is not None:
-                i.process(screen, event_list)
+                i.process_input(event_list)
+        for i in reversed(tile_list):
+            if i is not None:
+                i.draw(screen)
+        #Meeple handling
         for i in meeple_list:
             if i.show:
                 i.process(screen, event_list)
             else:
                 meeple_list.remove(i)
+        #Button handling
         draw_button.process(screen, event_list)
 
         #Update the display
