@@ -7,6 +7,7 @@ from grid import Grid
 class Tile():
     #Static variable, keeps track of whether any tile is being moved or not
     cursor_occupied = False
+    grid = Grid()
 
     
     def __init__(self, x, y, image_path):
@@ -20,19 +21,18 @@ class Tile():
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         
     def process(self, screen, event_list):
-        grid = Grid()
-        grid_square_size = grid.sizeBetween(1050, 10)
-
+        grid_square_size = Tile.grid.sizeBetween(1050, 10)
         for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and self.rect.collidepoint(event.pos) and not Tile.cursor_occupied:
+                    Tile.grid.removePoint(self.x, self.y)
                     self.is_picked_up = True
                     Tile.cursor_occupied = True
             #Looking for releasing left click
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
-                    self.x, self.y = grid.computeSnap(self.x, self.y)
+                    self.x, self.y = Tile.grid.computeSnap(self.x, self.y)
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
