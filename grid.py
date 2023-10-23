@@ -1,12 +1,24 @@
 import pygame
 import numpy as np
+from enum import Enum
 
 class Grid:
     occupied_coords = []
     
+    class Directions(Enum):
+        N = [0, -1]
+        NE = [1, -1]
+        E = [1, 0]
+        SE = [1, 1]
+        S = [0, 1]
+        SW = [-1, 1]
+        W = [-1, 0]
+        NW = [-1, -1]
+    
     # uselss constructor
     def __init__(self):
-        pass
+        #Size of tile images approx
+        self.SIZE = 105
 
     # draws the grid
     def drawGrid(self, w, rows, surface):
@@ -26,14 +38,29 @@ class Grid:
     #Removes coordinate from 
     def removePoint(self, x, y):
         if [x, y] in Grid.occupied_coords:
-          Grid.occupied_coords.remove([x, y])  
-
+          Grid.occupied_coords.remove([x, y])
+        print(Grid.occupied_coords) 
+    
+    def computeNearest(self, x, y):
+        #Prevent tile stacking
+        #Only checks clockwise in 8 compass directions for nearest open square
+        magnitude = 1
+        while [x, y] in Grid.occupied_coords:
+            for i in Grid.Directions:
+                print('Direction: ',i)
+                delta = [i.value[0] * self.SIZE * magnitude, i.value[1] * self.SIZE * magnitude]
+                print('Delta: ', delta)
+                if ([x, y] + delta) not in Grid.occupied_coords:
+                    return x + delta[0], y + delta[1]
+            magnitude += 1
+    
     #grabs size between, rounds x and y to nearest grid and returns x and y
     def computeSnap(self, x, y):
-        grid_square_size = self.sizeBetween(1050, 10)
-        x = ((round(x / grid_square_size)) * grid_square_size)
-        y = ((round(y / grid_square_size)) * grid_square_size)
-        if [x, y] not in Grid.occupied_coords:
+        x = self.SIZE * round(x / self.SIZE)
+        y = self.SIZE * round(y / self.SIZE)
+        if [x, y] in Grid.occupied_coords:
+            x, y =  self.computeNearest(x, y)
+        else:
             Grid.occupied_coords.append([x, y])
         print(Grid.occupied_coords)
         return x, y

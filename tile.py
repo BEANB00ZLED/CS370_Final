@@ -48,7 +48,8 @@ class Tile():
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
-                   
+        
+        self.rect = self.image.get_rect(topleft=(self.x, self.y))
         #Attatch tile to screen
         screen.blit(self.image, (self.x, self.y))
 
