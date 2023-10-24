@@ -48,12 +48,8 @@ class Grid:
         magnitude = 1
         while [x, y] in Grid.occupied_coords:
             for i in Grid.Directions:
-                print('Direction: ',i)
                 delta = [i.value[0] * self.SIZE * magnitude, i.value[1] * self.SIZE * magnitude]
-                print(delta)
-                print('Delta: ', delta)
                 result = list(map(add, [x, y], delta))
-                print('Result: ', result)
                 if (result) not in Grid.occupied_coords:
                     return x + delta[0], y + delta[1]
             magnitude += 1
@@ -66,5 +62,4 @@ class Grid:
         if [x, y] in Grid.occupied_coords:
             x, y =  self.computeNearest(x, y)
         Grid.occupied_coords.append([x, y])
-        print(Grid.occupied_coords)
         return x, y

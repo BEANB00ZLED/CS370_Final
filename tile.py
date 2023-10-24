@@ -42,14 +42,12 @@ class Tile():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and self.rect.collidepoint(event.pos) and not Tile.cursor_occupied:
                     if self.is_picked_up == False:
-                        print("picking up tile: removing point")
                         Tile.grid.removePoint(self.x, self.y)
                     self.is_picked_up = True
                     Tile.cursor_occupied = True
             #Looking for releasing left click
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1 and self.is_picked_up:
-                    print('tile dropped: adding point')
                     self.x, self.y = Tile.grid.computeSnap(self.x, self.y)
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
@@ -66,7 +64,7 @@ class Tile():
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
-            
+        #Update the rect so it stays with the tile
         self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
 
     def draw(self, screen):
