@@ -66,6 +66,8 @@ class Tile():
                 self.rect.move_ip(event.rel)
                 self.x = self.rect.x
                 self.y = self.rect.y
+            
+        self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
 
     def draw(self, screen):
         #Attatch tile to screen
