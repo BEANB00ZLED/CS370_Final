@@ -2,10 +2,13 @@
 
 import pygame
 import os
+from grid import Grid
 
 class Tile():
     #Static variable, keeps track of whether any tile is being moved or not
     cursor_occupied = False
+    grid = Grid()
+
     
     def __init__(self, x, y, tile_folder):
         self.is_picked_up = False
@@ -38,11 +41,16 @@ class Tile():
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and self.rect.collidepoint(event.pos) and not Tile.cursor_occupied:
+                    if self.is_picked_up == False:
+                        print("picking up tile: removing point")
+                        Tile.grid.removePoint(self.x, self.y)
                     self.is_picked_up = True
                     Tile.cursor_occupied = True
             #Looking for releasing left click
             elif event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
+                if event.button == 1 and self.is_picked_up:
+                    print('tile dropped: adding point')
+                    self.x, self.y = Tile.grid.computeSnap(self.x, self.y)
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
