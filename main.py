@@ -11,7 +11,7 @@ def main():
     pygame.init()
     
     #Set window size
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((0, 0),pygame.RESIZABLE, pygame.FULLSCREEN)
     
     #Set window name
     pygame.display.set_caption('Carcassonne')

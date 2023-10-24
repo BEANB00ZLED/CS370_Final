@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 from enum import Enum
+from operator import add
 
 class Grid:
     occupied_coords = []
@@ -38,7 +39,7 @@ class Grid:
     #Removes coordinate from 
     def removePoint(self, x, y):
         if [x, y] in Grid.occupied_coords:
-          Grid.occupied_coords.remove([x, y])
+            Grid.occupied_coords.remove([x, y])
         print(Grid.occupied_coords) 
     
     def computeNearest(self, x, y):
@@ -49,10 +50,14 @@ class Grid:
             for i in Grid.Directions:
                 print('Direction: ',i)
                 delta = [i.value[0] * self.SIZE * magnitude, i.value[1] * self.SIZE * magnitude]
+                print(delta)
                 print('Delta: ', delta)
-                if ([x, y] + delta) not in Grid.occupied_coords:
+                result = list(map(add, [x, y], delta))
+                print('Result: ', result)
+                if (result) not in Grid.occupied_coords:
                     return x + delta[0], y + delta[1]
             magnitude += 1
+        return x, y
     
     #grabs size between, rounds x and y to nearest grid and returns x and y
     def computeSnap(self, x, y):
@@ -60,7 +65,6 @@ class Grid:
         y = self.SIZE * round(y / self.SIZE)
         if [x, y] in Grid.occupied_coords:
             x, y =  self.computeNearest(x, y)
-        else:
-            Grid.occupied_coords.append([x, y])
+        Grid.occupied_coords.append([x, y])
         print(Grid.occupied_coords)
         return x, y
