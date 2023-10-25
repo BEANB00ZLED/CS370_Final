@@ -63,3 +63,7 @@ class Grid:
             x, y =  self.computeNearest(x, y)
         Grid.occupied_coords.append([x, y])
         return x, y
+
+    def shift(self,x, y):
+        #appends new value
+        self.occupied_coords.append([x, y])

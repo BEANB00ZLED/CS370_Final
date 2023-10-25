@@ -19,4 +19,13 @@ class Meeple:
                 #For right click within image detection
                 if event.button == 3 and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.show = False
+
+    #shifts position of meeple
+    def shift(self, screen, valueX, valueY):
+        #gets new values
+        self.rect.x = self.rect.x + valueX
+        self.rect.y = self.rect.y + valueY
+        #draws meeple again
+        screen.blit(self.image, (self.rect.x, self.rect.y))
+
         

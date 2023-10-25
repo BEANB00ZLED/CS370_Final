@@ -71,6 +71,18 @@ class Tile():
         #Attatch tile to screen
         screen.blit(self.frames[self.current_frame], (self.x, self.y))
 
+    def shift(self, screen, valueX, valueY):
+        #removes current location
+        self.grid.removePoint(self.x, self.y)
+        #gets new position
+        self.x = self.x + valueX
+        self.y = self.y + valueY
+        #draws the tile again
+        screen.blit(self.frames[self.current_frame], (self.x, self.y))
+        #really just appends it on the grid
+        self.grid.shift(self.x, self.y)
+
+
         
                     
 

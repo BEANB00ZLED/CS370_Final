@@ -24,6 +24,7 @@ def main():
     game_deck = Deck()
     tile_list = []
     meeple_list = []
+    grid = Grid()
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
@@ -50,6 +51,28 @@ def main():
                 #Closes window if esc key pressed
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                #Checks for WASD and calls the shift function on meeple and tile
+                #105 is the grid size (grid isn't called in main just hardcode it fuggit)
+                elif event.key == pygame.K_w:
+                    for i in tile_list:
+                        i.shift(screen, valueX=0, valueY=-105)
+                    for i in meeple_list:
+                        i.shift(screen, valueX=0, valueY=-105)
+                elif event.key == pygame.K_a:
+                    for i in tile_list:
+                        i.shift(screen, valueX=-105, valueY=0)
+                    for i in meeple_list:
+                        i.shift(screen, valueX=-105, valueY=0)
+                elif event.key == pygame.K_s:
+                    for i in tile_list:
+                        i.shift(screen, valueX=0, valueY=105)
+                    for i in meeple_list:
+                        i.shift(screen, valueX=0, valueY=105)
+                elif event.key == pygame.K_d:
+                    for i in tile_list:
+                        i.shift(screen, valueX=105, valueY=0)
+                    for i in meeple_list:
+                        i.shift(screen, valueX=105, valueY=0)
                 #Press 1 for purple meeple
                 elif event.key == pygame.K_1:  
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PurpleMeeple.png'))
