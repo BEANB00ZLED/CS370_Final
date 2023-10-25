@@ -24,7 +24,6 @@ def main():
     game_deck = Deck()
     tile_list = []
     meeple_list = []
-    grid = Grid()
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
