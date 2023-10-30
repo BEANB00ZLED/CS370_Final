@@ -90,7 +90,7 @@ def main():
         #Tile handling
         for i in tile_list:
             if i is not None:
-                i.process_input(event_list)
+                i.processInput(event_list)
         for i in reversed(tile_list):
             if i is not None:
                 i.draw(screen)

@@ -24,13 +24,13 @@ class Button:
         self.hover_color = hover_color
         self.font = pygame.font.Font(None, font_size)
         
-    def update_text(self, tiles_left):
+    def updateText(self, tiles_left):
         self.text = 'Draw Tile ({})'.format(tiles_left)
 
     #process function that takes in the screen from main, draws the button, and checks for a click
     def process(self, screen, event_list):
         pygame.draw.rect(screen, self.color, self.rect)
-        self.update_text(Deck.tiles_left)
+        self.updateText(Deck.tiles_left)
         text_surface = self.font.render(self.text, True, BLACK)
         text_rect = text_surface.get_rect()
         text_rect.center = self.rect.center

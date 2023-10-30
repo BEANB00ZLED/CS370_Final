@@ -36,7 +36,7 @@ class Tile():
         elif self.current_frame < 0:
             self.current_frame = len(self.frames) -1
         
-    def process_input(self, event_list):
+    def processInput(self, event_list):
         for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
