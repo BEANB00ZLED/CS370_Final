@@ -1,0 +1,17 @@
+Index: button.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\n\r\n#Button Class that allows us to create a custom size, color, and text on a button with a custom function.\r\n\r\n#Constant white color\r\nWHITE = (255, 255, 255)\r\nBLACK = (0, 0, 0)\r\nclass Button:\r\n    #Constructor function that sets size, color, function, text, and font size of the button\r\n    def __init__(self, x, y, width, height, text, click_function, color, font_size=30):\r\n        self.rect = pygame.Rect(x, y, width, height)\r\n        self.text = text\r\n        self.click_function = click_function\r\n        self.color = color\r\n        self.font = pygame.font.Font(None, font_size)\r\n\r\n    #process function that takes in the screen from main, draws the button, and checks for a click\r\n    def process(self, screen):\r\n        pygame.draw.rect(screen, self.color, self.rect)\r\n        text_surface = self.font.render(self.text, True, BLACK)\r\n        text_rect = text_surface.get_rect()\r\n        text_rect.center = self.rect.center\r\n        screen.blit(text_surface, text_rect)\r\n\r\n        if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:\r\n            self.click_function()\r\n\r\n
+===================================================================
+diff --git a/button.py b/button.py
+--- a/button.py	
++++ b/button.py	
+@@ -2,7 +2,7 @@
+ 
+ #Button Class that allows us to create a custom size, color, and text on a button with a custom function.
+ 
+-#Constant white color
++#Constant colors for testing purposes.
+ WHITE = (255, 255, 255)
+ BLACK = (0, 0, 0)
+ class Button:
