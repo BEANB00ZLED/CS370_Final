@@ -40,7 +40,6 @@ class Grid:
     def removePoint(self, x, y):
         if [x, y] in Grid.occupied_coords:
             Grid.occupied_coords.remove([x, y])
-        print(Grid.occupied_coords) 
     
     def computeNearest(self, x, y):
         #Prevent tile stacking

@@ -25,6 +25,8 @@ def main():
     meeple_list = []
     def processTile():
         drawn_tile = game_deck.drawTile()
+        if len(tile_list) > 0:
+            tile_list[0].locked = True
         tile_list.insert(0, drawn_tile)
 
     #Create our button for drawing the deck
@@ -32,8 +34,8 @@ def main():
                                hover_color="grey", click_color="red", font_size=30)
     
     #Creating the tile that starts in play
-    starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_3")
-    tile_list.insert(0, starting_tile)
+    #starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_3")
+    #tile_list.insert(0, starting_tile)
     #*********
     #Main game loop
     #*********
@@ -89,7 +91,7 @@ def main():
 
         #Tile handling
         for i in tile_list:
-            if i is not None:
+            if i is not None and not i.locked:
                 i.processInput(event_list)
         for i in reversed(tile_list):
             if i is not None:

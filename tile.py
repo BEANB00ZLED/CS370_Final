@@ -23,6 +23,7 @@ class Tile():
         self.width = self.frames[self.current_frame].get_width()
         self.height = self.frames[self.current_frame].get_height()
         self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
+        self.locked = False
     
     #The double underscore sorta makes it private, cuz abstraction n stuff
     def __rotate(self, clockwise: bool):
@@ -53,10 +54,10 @@ class Tile():
                     Tile.cursor_occupied = False
             elif event.type == pygame.KEYDOWN:
                 #Rotates 90 degrees clockwise if e is pressed
-                if event.key == pygame.K_e and self.rect.collidepoint(pygame.mouse.get_pos()) and self.is_picked_up:
+                if event.key == pygame.K_e and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.__rotate(clockwise=True)
                 #Rotates 90 degrees counter clockwise if q is pressed
-                elif event.key == pygame.K_q and self.rect.collidepoint(pygame.mouse.get_pos()) and self.is_picked_up:
+                elif event.key == pygame.K_q and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.__rotate(clockwise=False)
                     
             #Handles the movement part if the mouse button is down and no other tiles is being moved   
