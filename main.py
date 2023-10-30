@@ -2,7 +2,6 @@ import pygame
 from tile import Tile
 import button
 from deck import Deck
-from grid import Grid
 from meeple import Meeple
 
 
