@@ -33,9 +33,6 @@ def main():
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
                                hover_color="grey", click_color="red", font_size=30)
     
-    #Creating the tile that starts in play
-    #starting_tile = Tile((screen.get_width() / 2.0) -50, (screen.get_height() / 2.0) - 150, "TileAssets/Tile8_3")
-    #tile_list.insert(0, starting_tile)
     #*********
     #Main game loop
     #*********
