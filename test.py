@@ -242,9 +242,7 @@ class TestDeck(unittest.TestCase):
         for i in TestDeck.test_deck_2.game_deck:
             if i.tile_folder == 'TileAssets/Tile24_1':
                 num = num + 1
-        self.assertEqual(num, 1, "Incorrect amount of Tile24_1 in deck")
-        
-    
+        self.assertEqual(num, 1, "Incorrect amount of Tile24_1 in deck")    
     
     def test_same_start(self):
         self.assertFalse(np.array_equal(TestDeck.test_deck_1.game_deck, TestDeck.test_deck_2.game_deck), "Initial shuffle results in the same order or tiles")
@@ -267,12 +265,12 @@ class TestGrid(unittest.TestCase):
     tile_list = []
     tile_coords = []
     grid = Grid()
-    for i in range(0,11):
+    for i in range(0,25):
         tile_list.append(Tile(500, 430, 'TileAssets/Tile1_4'))
         x, y = grid.computeSnap(tile_list[-1].x, tile_list[-1].y)
         tile_coords.append([x, y])
     #Makes sure tests are run in the correct order
-    unittest.TestLoader.sortTestMethodsUsing = None
+    #unittest.TestLoader.sortTestMethodsUsing = None
         
     def test_first_snap(self):
         #Looking for inital snap
@@ -351,6 +349,134 @@ class TestGrid(unittest.TestCase):
         X = 525
         Y = 210
         coord = (TestGrid.tile_coords[9][0], TestGrid.tile_coords[9][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_eleventh_snap(self):
+        #Should snap double NE of first
+        X = 735
+        Y = 210
+        coord = (TestGrid.tile_coords[10][0], TestGrid.tile_coords[10][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_twelfth_snap(self):
+        #Should snap double E of first
+        X = 735
+        Y = 420
+        coord = (TestGrid.tile_coords[11][0], TestGrid.tile_coords[11][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_thirteenth_snap(self):
+        #Should snap double SE of first
+        X = 735
+        Y = 630
+        coord = (TestGrid.tile_coords[12][0], TestGrid.tile_coords[12][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_fourteenth_snap(self):
+        #Should snap double S of first
+        X = 525
+        Y = 630
+        coord = (TestGrid.tile_coords[13][0], TestGrid.tile_coords[13][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_fifteenth_snap(self):
+        #Should snap double SW of first
+        X = 315
+        Y = 630
+        coord = (TestGrid.tile_coords[14][0], TestGrid.tile_coords[14][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_sixteenth_snap(self):
+        #Should snap double W of first
+        X = 315
+        Y = 420
+        coord = (TestGrid.tile_coords[15][0], TestGrid.tile_coords[15][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_seventeenth_snap(self):
+        #Should snap double NW of first
+        X = 315
+        Y = 210
+        coord = (TestGrid.tile_coords[16][0], TestGrid.tile_coords[16][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_seventeenth_snap(self):
+        #Should snap double NW of first
+        X = 315
+        Y = 210
+        coord = (TestGrid.tile_coords[16][0], TestGrid.tile_coords[16][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_eighteenth_snap(self):
+        #Should snap triple N of first
+        X = 525
+        Y = 105
+        coord = (TestGrid.tile_coords[17][0], TestGrid.tile_coords[17][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_nineteenth_snap(self):
+        #Should snap triple NE of first
+        X = 840
+        Y = 105
+        coord = (TestGrid.tile_coords[18][0], TestGrid.tile_coords[18][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_twentieth_snap(self):
+        #Should snap triple E of first
+        X = 840
+        Y = 420
+        coord = (TestGrid.tile_coords[19][0], TestGrid.tile_coords[19][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_twentyfirst_snap(self):
+        #Should snap triple SE of first
+        X = 840
+        Y = 735
+        coord = (TestGrid.tile_coords[20][0], TestGrid.tile_coords[20][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_twentysecond_snap(self):
+        #Should snap triple S of first
+        X = 525
+        Y = 735
+        coord = (TestGrid.tile_coords[21][0], TestGrid.tile_coords[21][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+    
+    def test_twentythird_snap(self):
+        #Should snap triple SW of first
+        X = 210
+        Y = 735
+        coord = (TestGrid.tile_coords[22][0], TestGrid.tile_coords[22][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_twentyfourth_snap(self):
+        #Should snap triple W of first
+        X = 210
+        Y = 420
+        coord = (TestGrid.tile_coords[23][0], TestGrid.tile_coords[23][1])
+        self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
+        self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
+        
+    def test_twentyfifth_snap(self):
+        #Should snap triple NW of first
+        X = 210
+        Y = 105
+        coord = (TestGrid.tile_coords[24][0], TestGrid.tile_coords[24][1])
         self.assertTupleEqual(coord, (X, Y), 'Expected snap {}, actual snap {}'.format((X, Y), coord))
         self.assertTrue([X, Y] in TestGrid.grid.occupied_coords, 'Expected {}, in {}'.format([X, Y], TestGrid.grid.occupied_coords))
 
