@@ -25,7 +25,7 @@ def main():
     running = True
 
     meeple_spawn_sound = pygame.mixer.Sound('horn-89801.mp3')
-    tile_spawn_sound = pygame.mixer.Sound('')
+    #tile_spawn_sound = pygame.mixer.Sound('')
     game_deck = Deck()
     tile_list = []
     meeple_list = []
