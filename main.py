@@ -5,7 +5,6 @@ import button
 from deck import Deck
 from meeple import Meeple
 
-
 def main():
     #Initialize pygame module
     pygame.init()
@@ -24,8 +23,10 @@ def main():
     #For if game is running
     running = True
 
-    meeple_spawn_sound = pygame.mixer.Sound('horn-89801.mp3')
-    #tile_spawn_sound = pygame.mixer.Sound('')
+    #Loads in audio samples 
+    meeple_spawn_sound = pygame.mixer.Sound('Sounds/horn-89801.mp3')
+    tile_spawn_sound = pygame.mixer.Sound('Sounds/card-sounds-35956.mp3')
+
     game_deck = Deck()
     tile_list = []
     meeple_list = []
@@ -34,6 +35,8 @@ def main():
         if len(tile_list) > 0:
             tile_list[0].locked = True
         tile_list.insert(0, drawn_tile)
+        #play the tile spawn sound
+        tile_spawn_sound.play() 
 
     #Create our button for drawing the deck
     draw_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100, "Draw Tile (72)", click_function=processTile, color="white",
