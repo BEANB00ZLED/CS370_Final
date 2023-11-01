@@ -100,9 +100,9 @@ def main():
         for i in meeple_list:
             if i.show:
                 i.process(screen, event_list)
-            else:
+            else: 
+                #meeple2_sound.play()
                 meeple_list.remove(i)
-        #Button handling
         draw_button.process(screen, event_list)
 
         #Update the display
