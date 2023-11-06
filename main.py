@@ -44,6 +44,9 @@ def main():
     def gameStart():
          gamestate.updateToGameState(1)
 
+    def pickPlayers():
+        gamestate.updateToGameState(2)
+
 
     #Create our button for drawing the deck
     start_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100,
@@ -152,7 +155,21 @@ def main():
             #Button handling
             for i in button_list:
                 i.process(screen, event_list)
-
+        #not used yet
+        if gamestate.currentGameState() == 2:
+            # Gets the events that are done
+            event_list = pygame.event.get()
+            # Check for event if user has made any sort of input
+            for event in event_list:
+                # Closes window if X is pressed
+                if event.type == pygame.QUIT:
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    # Closes window if esc key pressed
+                    if event.key == pygame.K_ESCAPE:
+                        running = False
+            # Set window color
+            screen.fill("black")
 
         #Update the display
         pygame.display.flip()
