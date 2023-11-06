@@ -13,12 +13,12 @@ def main():
 
     #Set window size
     screen = pygame.display.set_mode((0, 0),pygame.RESIZABLE, pygame.FULLSCREEN)
-    
+
     #Set window name
     pygame.display.set_caption('Carcassonne')
     #Set window icon
     pygame.display.set_icon(pygame.image.load('MiscAssets/CarcasonneLogoTransparentBackground.png'))
-    
+
     #For if game is running
     running = True
 
@@ -29,26 +29,29 @@ def main():
     tile_list = []
     meeple_list = []
     button_list = []
+    #process the tile
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
         draw_button.clickable = False
         round_button.clickable = True
-
+    #ends the round, locking the tile, locking the end round button, and unlocking
+    #the draw button
     def endRound():
         if len(tile_list) > 0:
             tile_list[0].locked = True
         draw_button.clickable = True
         round_button.clickable = False
 
+    #updates gamestate to the game
     def gameStart():
          gamestate.updateToGameState(1)
-
+    #unused right now, updates the gamestate to player picking
     def pickPlayers():
         gamestate.updateToGameState(2)
 
 
-    #Create our button for drawing the deck
+    #Create our buttons
     start_button = button.Button((screen.get_width() / 2) - 200, screen.get_height() - 150, 400, 100,
                                  "Start Game",
                                  click_function=gameStart, color="white",
@@ -82,6 +85,7 @@ def main():
                     # Closes window if esc key pressed
                     if event.key == pygame.K_ESCAPE:
                         running = False
+            #sets up the start menu
             start.drawStartMenu()
             start_button.process(screen, event_list)
 
