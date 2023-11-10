@@ -11,7 +11,6 @@ class Meeple:
         self.y = y - (self.image.get_width() / 2)
         self.show = True
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
-        pygame.mixer.init()
         self.delete_sound = pygame.mixer.Sound('Sounds/wilhelmscream.mp3')
     
     def process(self, screen, event_list):

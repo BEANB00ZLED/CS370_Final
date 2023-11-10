@@ -26,7 +26,11 @@ def main():
     #Loads in audio samples 
     meeple_spawn_sound = pygame.mixer.Sound('Sounds/horn-89801.mp3')
     tile_spawn_sound = pygame.mixer.Sound('Sounds/card-sounds-35956.mp3')
-    tile_spawn_sound.set_volume(0.7)
+    tile_spawn_sound.set_volume(0.4)
+    #Set the background music to play on loop
+    background_music = pygame.mixer.music.load('Sounds/ancientstones.mp3')
+    pygame.mixer.music.set_volume(0.40)
+    pygame.mixer.music.play(loops=-1)
 
     game_deck = Deck()
     tile_list = []
@@ -50,6 +54,7 @@ def main():
     #Main game loop
     #*********
     while running:
+        
         #Gets the events that are done
         event_list = pygame.event.get()
         #Check for event if user has made any sort of input
