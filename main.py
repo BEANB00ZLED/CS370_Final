@@ -26,6 +26,7 @@ def main():
     #Loads in audio samples 
     meeple_spawn_sound = pygame.mixer.Sound('Sounds/horn-89801.mp3')
     tile_spawn_sound = pygame.mixer.Sound('Sounds/card-sounds-35956.mp3')
+    tile_spawn_sound.set_volume(0.7)
 
     game_deck = Deck()
     tile_list = []
@@ -86,22 +87,22 @@ def main():
                 elif event.key == pygame.K_1:  
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PurpleMeeple.png'))
                     #play sound
-                    meeple_spawn_sound.play()
+                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
                 #Press 2 for pink meeple
                 elif event.key == pygame.K_2:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PinkMeeple.png'))
                     #play sound
-                    meeple_spawn_sound.play()
+                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
                 #Press 3 for blue meeple
                 elif event.key == pygame.K_3:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/BlueMeeple.png'))
                     #play sound
-                    meeple_spawn_sound.play()
+                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
                 #Press 4 for orange meeple
                 elif event.key == pygame.K_4:
                     meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/OrangeMeeple.png'))
                     #play sound
-                    meeple_spawn_sound.play()
+                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
 
         #Set window color
         screen.fill("black")

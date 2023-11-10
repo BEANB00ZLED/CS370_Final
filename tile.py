@@ -24,6 +24,7 @@ class Tile():
         self.height = self.frames[self.current_frame].get_height()
         self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
         self.locked = False
+        self.rotate_sound = pygame.mixer.Sound('Sounds/stonerotate.mp3')
     
     #The double underscore sorta makes it private, cuz abstraction n stuff
     def __rotate(self, clockwise: bool):
@@ -36,6 +37,7 @@ class Tile():
             self.current_frame = 0
         elif self.current_frame < 0:
             self.current_frame = len(self.frames) -1
+        pygame.mixer.Channel(2).play(self.rotate_sound)
         
     def processInput(self, event_list):
         for event in event_list:
