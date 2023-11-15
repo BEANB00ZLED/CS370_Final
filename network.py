@@ -17,8 +17,12 @@ class Network:
         try:
             self.client.connect(self.addr)
             return self.client.recv(2048 * BITMOD).decode()
-        except:
-            "NETWORK CONNECT SHIT HIT THE FAN"
+        except socket.error as e:
+            print("NETWORK CONNECT SHIT HIT THE FAN: ", e)
             pass
         
-n = Network()
+def main():
+    n = Network()
+    
+if __name__ == "__main__":
+    main()
