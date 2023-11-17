@@ -2,16 +2,6 @@ import socket
 from _thread import *
 import sys
 
-
-#Local IPv4 address
-#THIS IS HARDCODED RN AND WILL NEED TO BE CHANGED TO WORK 
-SERVER = "192.168.210.227"
-PORT = 5051
-#increase this to increase number of bits sent
-BITMOD = 1
-
-
-
 #This can run in the background while other things r going, cuz threads n stuff
 def threaded_client(conn):
     conn.send(str.encode("Connected"))
@@ -41,6 +31,15 @@ def threaded_client(conn):
 
     
 def main():
+    #Local IPv4 address
+    #THIS IS HARDCODED IN AND WILL NEED TO BE CHANGED TO WORK 
+    global SERVER 
+    SERVER = "192.168.1.15"
+    global PORT
+    PORT = 5051
+    #increase this to increase number of bits sent
+    global BITMOD 
+    BITMOD = 1
     #Create our socket
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

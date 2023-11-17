@@ -4,8 +4,14 @@ from tile import Tile
 import button
 from deck import Deck
 from meeple import Meeple
+from network import Network
 
 def main():
+    #Create out network
+    n = Network()
+    #What client position in queue is
+    start_pos = n.getPos()
+    
     #Initialize pygame module
     pygame.init()
 
