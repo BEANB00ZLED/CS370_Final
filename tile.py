@@ -28,6 +28,7 @@ class Tile():
         self.height = self.frames[self.current_frame].get_height()
         self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
         self.locked = False
+        self.__wrap()
         
     
     #The double underscore sorta makes it private, cuz abstraction n stuff
@@ -44,6 +45,7 @@ class Tile():
         pygame.mixer.Channel(2).play(Tile.rotate_sound)
         
     def processInput(self, event_list):
+        self.__unwrap()
         for event in event_list:
             #Looking for pressing left click
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -74,12 +76,16 @@ class Tile():
                 self.y = self.rect.y
         #Update the rect so it stays with the tile
         self.rect = self.frames[self.current_frame].get_rect(topleft=(self.x, self.y))
+        self.__wrap()
 
     def draw(self, screen):
+        self.__unwrap()
         #Attatch tile to screen
         screen.blit(self.frames[self.current_frame], (self.x, self.y))
+        self.__wrap()
 
     def shift(self, screen, valueX, valueY):
+        self.__unwrap()
         #removes current location
         self.grid.removePoint(self.x, self.y)
         #gets new position
@@ -89,6 +95,18 @@ class Tile():
         screen.blit(self.frames[self.current_frame], (self.x, self.y))
         #really just appends it on the grid
         self.grid.shift(self.x, self.y)
+        self.__wrap()
+    
+    def __wrap(self):
+        for i in range(len(self.frames)):
+            self.frames[i] = pygame.image.tostring(self.frames[i], "RGB")
+        #self.rect = pygame.image.tostring(self.rect, "P")
+        
+    def __unwrap(self):
+        for i in range(len(self.frames)):
+            self.frames[i] = pygame.image.fromstring(self.frames[i], format="RGB")
+        #self.rect = pygame.image.fromstring(self.rect, format="P")
+            
 
 
         

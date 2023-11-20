@@ -8,8 +8,12 @@ class Network:
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server = globals.SERVER
         self.port = globals.PORT
-        #Connecting
-        self.client.connect((self.server, self.port))
+        try:
+            #Connecting
+            self.client.connect((self.server, self.port))
+            print(f"Connecting to server - {self.server}:{self.port}")
+        except Exception as e:
+            print(f"NETWORK CONNECT SHIT HIT THE FAN: {e}")
         
     def receive(self):
         try:

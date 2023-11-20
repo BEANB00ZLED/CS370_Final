@@ -140,3 +140,6 @@ def main():
         
         #Update the server
         n.send(game)
+
+if __name__ == "__main__":
+    main()
