@@ -1,6 +1,7 @@
 #meeple.py
 
 import pygame
+from sounds import meeple_delete_sound
 
 class Meeple:   
     def __init__(self, x, y, file_path):
@@ -12,7 +13,6 @@ class Meeple:
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.width = self.image.get_width()
         self.height = self.image.get_height()
-        self.delete_sound = pygame.mixer.Sound('Sounds/wilhelmscream.mp3')
         self.__wrap()
     
     def process(self, screen, event_list):
@@ -23,7 +23,7 @@ class Meeple:
                 #For right click within image detection
                 if event.button == 3 and self.rect.collidepoint(pygame.mouse.get_pos()):
                     self.show = False
-                    pygame.mixer.Channel(1).play(self.delete_sound)
+                    pygame.mixer.Channel(1).play(meeple_delete_sound)
         self.__wrap()
 
     #shifts position of meeple

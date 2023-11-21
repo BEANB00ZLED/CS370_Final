@@ -3,16 +3,14 @@
 import pygame
 import os
 from grid import Grid
+from sounds import tile_drop_sound
+from sounds import tile_rotate_sound
 
 class Tile():
     #Static variable, keeps track of whether any tile is being moved or not
     cursor_occupied = False
     grid = Grid()
-
     pygame.mixer.init()
-    rotate_sound = pygame.mixer.Sound('Sounds/stonerotate.mp3')
-    drop_sound = pygame.mixer.Sound('Sounds/stone-dropping-6843.mp3')
-    drop_sound.set_volume(.6)
     
     def __init__(self, x, y, tile_folder):
         self.is_picked_up = False
@@ -42,7 +40,7 @@ class Tile():
             self.current_frame = 0
         elif self.current_frame < 0:
             self.current_frame = len(self.frames) -1
-        pygame.mixer.Channel(2).play(Tile.rotate_sound)
+        pygame.mixer.Channel(2).play(tile_rotate_sound)
         
     def processInput(self, event_list):
         self.__unwrap()
@@ -60,7 +58,7 @@ class Tile():
                     self.x, self.y = Tile.grid.computeSnap(self.x, self.y)
                     self.is_picked_up = False
                     Tile.cursor_occupied = False
-                    pygame.mixer.Channel(2).play(Tile.drop_sound)
+                    pygame.mixer.Channel(2).play(tile_drop_sound)
             elif event.type == pygame.KEYDOWN:
                 #Rotates 90 degrees clockwise if e is pressed
                 if event.key == pygame.K_e and self.rect.collidepoint(pygame.mouse.get_pos()):
