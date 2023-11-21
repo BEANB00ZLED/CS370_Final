@@ -10,6 +10,8 @@ class Meeple:
         self.y = y - (self.image.get_width() / 2)
         self.show = True
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
         self.delete_sound = pygame.mixer.Sound('Sounds/wilhelmscream.mp3')
         self.__wrap()
     
@@ -36,12 +38,12 @@ class Meeple:
     
     #Convert data to a string of bytes so that it can be sent over the network
     def __wrap(self):
-        self.image = pygame.image.tostring(self.image, format="RGB")
+        self.image = pygame.image.tobytes(self.image, "RGB")
         #self.rect = pygame.image.tostring(self.rect) 
     
     #Convert data from a string of bytes so that it can be used in code
     def __unwrap(self):
-        self.image = pygame.image.fromstring(self.image, format="RGB")
+        self.image = pygame.image.frombytes(self.image, (self.width, self.height), "RGB")
         #self.rect = pygame.image.fromstring(self.rect)
 
         

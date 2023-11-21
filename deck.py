@@ -7,7 +7,7 @@ from tile import Tile
 
 #Deck class that will allow for the shuffling, drawing, and storing of tiles
 class Deck:
-    
+
     tiles_left = 0
     
     #Shuffles the Deck

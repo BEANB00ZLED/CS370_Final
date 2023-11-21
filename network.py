@@ -1,6 +1,7 @@
 import socket
 import pickle
 import globals
+import sys
 
 class Network:
     def __init__(self):
@@ -17,16 +18,19 @@ class Network:
         
     def receive(self):
         try:
+            print("Receiving data from server")
             #It is going to try and receive the game data
             data_received = self.client.recv(2048 * globals.BITMOD)
             #Deserialize the data into the object
             game = pickle.loads(data_received)
+            print(f"Recieved: {type(game)} size {sys.getsizeof(game)}")
             return game
         except Exception as e:
             print(f"NETWORK SEND SHIT HIT THE FAN: {e}")
     
     def send(self, data):
         try:
+            print("Sending data to server")
             #Serialize the objet
             serialized_object = pickle.dumps(data)
             #Send the object to the server

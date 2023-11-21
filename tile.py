@@ -99,12 +99,12 @@ class Tile():
     
     def __wrap(self):
         for i in range(len(self.frames)):
-            self.frames[i] = pygame.image.tostring(self.frames[i], "RGB")
+            self.frames[i] = pygame.image.tobytes(self.frames[i], "RGB")
         #self.rect = pygame.image.tostring(self.rect, "P")
         
     def __unwrap(self):
         for i in range(len(self.frames)):
-            self.frames[i] = pygame.image.fromstring(self.frames[i], format="RGB")
+            self.frames[i] = pygame.image.frombytes(self.frames[i], (self.width, self.height), "RGB")
         #self.rect = pygame.image.fromstring(self.rect, format="P")
             
 

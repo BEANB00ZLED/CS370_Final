@@ -17,7 +17,7 @@ def main():
     pygame.mixer.init()
     
     #Set window size
-    screen = pygame.display.set_mode((500, 500),pygame.RESIZABLE)
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     
     #Set window name
     pygame.display.set_caption('Carcassonne')
@@ -35,9 +35,9 @@ def main():
     background_music = pygame.mixer.music.load('Sounds/ancientstones.mp3')
     pygame.mixer.music.set_volume(0.40)
     pygame.mixer.music.play(loops=-1)
-
-    #Game data from server
-    game = n.receive()
+    
+    #Grab game data from server
+    game = None
     
     def processTile():
         drawn_tile = game.game_deck.drawTile()
@@ -54,11 +54,14 @@ def main():
     #Clock so we arent sending/receiving info too often
     clock = pygame.time.Clock()
     
+    print("WE MADE IT TO THE MAIN LOOP")
+    
+    
     #*********
     #Main game loop
     #*********
     while running:
-        
+        clock.tick(60)
         #Sync the client to the server
         game = n.receive()
         
