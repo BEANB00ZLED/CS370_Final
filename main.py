@@ -26,12 +26,12 @@ def main():
     running = True
 
     #Loads in audio samples
-    meeple_spawn_sound = pygame.mixer.Sound('Sounds/horn-89801.mp3')
+
     tile_spawn_sound = pygame.mixer.Sound('Sounds/card-sounds-35956.mp3')
     tile_spawn_sound.set_volume(0.4)
     #Set the background music to play on loop
     background_music = pygame.mixer.music.load('Sounds/ancientstones.mp3')
-    pygame.mixer.music.set_volume(0.40)
+    pygame.mixer.music.set_volume(0.80)
     pygame.mixer.music.play(loops=-1)
 
 
@@ -88,63 +88,6 @@ def main():
     #*********
     # *********
     while running:
-
-        #Gets the events that are done
-        event_list = pygame.event.get()
-        #Check for event if user has made any sort of input
-        for event in event_list:
-            #Closes winow if X is pressed
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.KEYDOWN:
-                #Closes window if esc key pressed
-                if event.key == pygame.K_ESCAPE:
-                    running = False
-                #Checks for WASD and calls the shift function on meeple and tile
-                #105 is the grid size (grid isn't called in main just hardcode it fuggit)
-                elif event.key == pygame.K_w:
-                    for i in tile_list:
-                        i.shift(screen, valueX=0, valueY=-105)
-                    for i in meeple_list:
-                        i.shift(screen, valueX=0, valueY=-105)
-                elif event.key == pygame.K_a:
-                    for i in tile_list:
-                        i.shift(screen, valueX=-105, valueY=0)
-                    for i in meeple_list:
-                        i.shift(screen, valueX=-105, valueY=0)
-                elif event.key == pygame.K_s:
-                    for i in tile_list:
-                        i.shift(screen, valueX=0, valueY=105)
-                    for i in meeple_list:
-                        i.shift(screen, valueX=0, valueY=105)
-                elif event.key == pygame.K_d:
-                    for i in tile_list:
-                        i.shift(screen, valueX=105, valueY=0)
-                    for i in meeple_list:
-                        i.shift(screen, valueX=105, valueY=0)
-                #Press 1 for purple meeple
-                elif event.key == pygame.K_1:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PurpleMeeple.png'))
-                    #play sound
-                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
-                #Press 2 for pink meeple
-                elif event.key == pygame.K_2:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/PinkMeeple.png'))
-                    #play sound
-                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
-                #Press 3 for blue meeple
-                elif event.key == pygame.K_3:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/BlueMeeple.png'))
-                    #play sound
-                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
-                #Press 4 for orange meeple
-                elif event.key == pygame.K_4:
-                    meeple_list.insert(0, Meeple(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 'MiscAssets/Meeples/OrangeMeeple.png'))
-                    #play sound
-                    pygame.mixer.Channel(1).play(meeple_spawn_sound)
-
-        #Set window color
-        screen.fill("black")
         if gamestate.currentGameState() == 0:
             # Gets the events that are done
             event_list = pygame.event.get()
@@ -215,21 +158,6 @@ def main():
             # Set window color
             screen.fill("black")
 
-        #Tile handling
-        for i in tile_list:
-            if i is not None and not i.locked:
-                i.processInput(event_list)
-        for i in reversed(tile_list):
-            if i is not None:
-                i.draw(screen)
-        #Meeple handling
-        for i in meeple_list:
-            if i.show:
-                i.process(screen, event_list)
-            else:
-                #meeple2_sound.play()
-                meeple_list.remove(i)
-        draw_button.process(screen, event_list)
             # Tile handling
             for i in tile_list:
                 if i is not None and not i.locked:

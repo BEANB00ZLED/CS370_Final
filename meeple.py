@@ -12,9 +12,12 @@ class Meeple:
         self.show = True
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.delete_sound = pygame.mixer.Sound('Sounds/wilhelmscream.mp3')
+        self.meeple_spawn_sound = pygame.mixer.Sound('Sounds/horn-89801.mp3')
+        pygame.mixer.Channel(1).play(self.meeple_spawn_sound)
     
     def process(self, screen, event_list):
         screen.blit(self.image, (self.rect.x, self.rect.y))
+
         for event in event_list:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 #For right click within image detection
