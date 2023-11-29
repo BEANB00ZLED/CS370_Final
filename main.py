@@ -45,6 +45,7 @@ def main():
     def processTile():
         drawn_tile = game_deck.drawTile()
         tile_list.insert(0, drawn_tile)
+        tile_spawn_sound.play()
         draw_button.clickable = False
         round_button.clickable = True
     #ends the round, locking the tile, locking the end round button, and unlocking
@@ -52,9 +53,7 @@ def main():
     def endRound():
         if len(tile_list) > 0:
             tile_list[0].locked = True
-        tile_list.insert(0, drawn_tile)
         #play the tile spawn sound
-        tile_spawn_sound.play()
         draw_button.clickable = True
         round_button.clickable = False
 
