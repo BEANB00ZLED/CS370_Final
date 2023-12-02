@@ -52,7 +52,8 @@ def main():
     #the draw button
     def endRound():
         if len(tile_list) > 0:
-            tile_list[0].locked = True
+            if tile_list[0] is not None:
+                tile_list[0].locked = True
         #play the tile spawn sound
         draw_button.clickable = True
         round_button.clickable = False
@@ -120,22 +121,26 @@ def main():
                     # 105 is the grid size (grid isn't called in main just hardcode it fuggit)
                     elif event.key == pygame.K_w:
                         for i in tile_list:
-                            i.shift(screen, valueX=0, valueY=-105)
+                            if not i.is_picked_up:
+                                i.shift(screen, valueX=0, valueY=-105)
                         for i in meeple_list:
                             i.shift(screen, valueX=0, valueY=-105)
                     elif event.key == pygame.K_a:
                         for i in tile_list:
-                            i.shift(screen, valueX=-105, valueY=0)
+                            if not i.is_picked_up:
+                                i.shift(screen, valueX=-105, valueY=0)
                         for i in meeple_list:
                             i.shift(screen, valueX=-105, valueY=0)
                     elif event.key == pygame.K_s:
                         for i in tile_list:
-                            i.shift(screen, valueX=0, valueY=105)
+                            if not i.is_picked_up:
+                                i.shift(screen, valueX=0, valueY=105)
                         for i in meeple_list:
                             i.shift(screen, valueX=0, valueY=105)
                     elif event.key == pygame.K_d:
                         for i in tile_list:
-                            i.shift(screen, valueX=105, valueY=0)
+                            if not i.is_picked_up:
+                                i.shift(screen, valueX=105, valueY=0)
                         for i in meeple_list:
                             i.shift(screen, valueX=105, valueY=0)
                     # Press 1 for purple meeple
@@ -160,8 +165,9 @@ def main():
 
             # Tile handling
             for i in tile_list:
-                if i is not None and not i.locked:
-                    i.processInput(event_list)
+                if i is not None:
+                    if not i.locked:
+                        i.processInput(event_list)
             for i in reversed(tile_list):
                 if i is not None:
                     i.draw(screen)
