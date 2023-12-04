@@ -13,7 +13,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     s.bind((server, port))
 except socket.error as e:
-    print(f"SOCKET BIND SHIT HIT THE FAN: {e}")
+    print(f"SOCKET BIND BLEW UP: {e}")
 
 s.listen(1)  # Allow up to # connections at a time
 print(f"Waiting for a connection, Server Started - {server}:{port}")
@@ -51,6 +51,6 @@ try:
         game = pickle.dumps(game)
         conn.sendall(game)
 except Exception as e:
-    print(f"SERVER SHIT HIT THE FAN: {e}")
+    print(f"SERVER STUFF BLEW UP: {e}")
 finally:
     conn.close()

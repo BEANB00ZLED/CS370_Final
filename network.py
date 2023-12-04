@@ -14,7 +14,7 @@ class Network:
             self.client.connect((self.server, self.port))
             print(f"Connecting to server - {self.server}:{self.port}")
         except Exception as e:
-            print(f"NETWORK CONNECT SHIT HIT THE FAN: {e}")
+            print(f"NETWORK CONNECT STUFF BLEW UP: {e}")
         
     def receive(self):
         try:
@@ -23,10 +23,10 @@ class Network:
             data_received = self.client.recv(2048 * globals.BITMOD)
             #Deserialize the data into the object
             game = pickle.loads(data_received)
-            print(f"Recieved: {type(game)} size {sys.getsizeof(game)}")
+            print(f"Received: {type(game)} size {sys.getsizeof(game)}")
             return game
         except Exception as e:
-            print(f"NETWORK SEND SHIT HIT THE FAN: {e}")
+            print(f"NETWORK RECEIVE STUFF BLEW UP: {e}")
     
     def send(self, data):
         try:
@@ -36,4 +36,4 @@ class Network:
             #Send the object to the server
             self.client.sendall(serialized_object)
         except Exception as e:
-            print(f"NETWORK SEND SHIT HIT THE FAN {e}")
+            print(f"NETWORK SEND STUFF BLEW UP: {e}")
