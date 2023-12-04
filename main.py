@@ -31,7 +31,7 @@ def main():
     tile_spawn_sound.set_volume(0.4)
     #Set the background music to play on loop
     background_music = pygame.mixer.music.load('Sounds/ancientstones.mp3')
-    pygame.mixer.music.set_volume(0.80)
+    pygame.mixer.music.set_volume(0.60)
     pygame.mixer.music.play(loops=-1)
 
 
